@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: rgb(80, 43, 226);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        div{
+            background-color: white;
+            max-width: 600px;
+            padding:100px;
+            border-radius: 5px;
+        }
+        #inp{
+            height: 30px;
+            width: 250px;
+            border-radius: 5px;
+            border: none;
+            box-shadow: 0 0 10px 2px grey;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+        ::placeholder{
+            padding-left: 5px;
+        }
+        #add{
+            background-color: blue;
+            color: white;
+            border: none;
+            height: 35px;
+            width: 50px;
+            border-radius: 5px;
+            font-size: 15px;
+            font-weight: 600;
+            box-shadow: 0 0 10px 2px grey;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+        #ult{
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        li{
+            background-color: rgb(177, 241, 220);
+            border-color: rgb(120, 116, 116);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 15px 0px;
+            width: 300px;
+            height: 40px;
+            padding-left: 10px;
+            padding-right: 10px;
+            border-radius: 5px;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+        li button{
+            color: white;
+            background-color: rgb(53, 9, 119);
+            border-radius: 5px;
+            font-weight: 600;
+            height: 30px;
+            width:60px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div>
+    <input type="text" placeholder="Enter a Task...!" id="inp" onkeypress="todo(event)">
+    <button type="submit" id="add">Add</button>
+    <ul id="ult"></ul>
+    </div>
+</body>
+<script>
+    const inp=document.querySelector('#inp');
+    const add=document.querySelector('#add');
+    const ult=document.querySelector('#ult');
+
+    function todo(e){
+        if(e.code=='Enter'){
+            let d=e.target.value;
+            let li=document.createElement('li');
+            li.innerHTML=`${d}`;
+
+            let btn=document.createElement('button');
+            btn.textContent='Delete';
+            ult.appendChild(li);
+            li.appendChild(btn);
+            inp.value='';
+            inp.focus();
+        }
+
+            add.onclick=function(){
+            let li=document.createElement('li');
+            li.innerHTML=`<span>${inp.value}</span><button class=del-btn>Delete</button>`;
+            ult.appendChild(li);
+            inp.value='';
+            inp.focus();
+        }
+    }
+    
+        ult.addEventListener('click',function(e){
+                e.target.parentElement.remove();
+        })
+    
+        add.onclick=function(){
+            if(inp.value.length==0){
+                alert('Fill out the Task....!')
+            }
+        }
+    
+
+
+
+</script>
+</html>
